@@ -11,7 +11,8 @@ export default
                     path: 'pullRequests/{user}/{repo}',
                     request: {
                         schema: {}
-                    }
+                    },
+                    cors: true
                 }
             }
         ]

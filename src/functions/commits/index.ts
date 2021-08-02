@@ -11,7 +11,8 @@ export default
                     path: 'commits',
                     request: {
                         schema: {}
-                    }
+                    },
+                    cors: true
                 }
             }
         ]
