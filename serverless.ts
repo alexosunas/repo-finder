@@ -1,5 +1,6 @@
 import type { AWS } from '@serverless/typescript';
 import pullRequests from '@functions/pullRequests';
+import commits from '@functions/commits';
 
 const serverlessConfiguration: AWS = {
   service: 'repo-finder',
@@ -32,7 +33,8 @@ const serverlessConfiguration: AWS = {
   },
   // import the function via paths
   functions: {
-    pullRequests
+    pullRequests,
+    commits
   },
 };
 
