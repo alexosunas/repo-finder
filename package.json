@@ -20,7 +20,11 @@
     "@middy/http-json-body-parser": "^1.5.2",
     "axios": "^0.21.1",
     "lodash": "^4.17.21",
-    "source-map-support": "^0.5.19"
+    "reflect-metadata": "^0.1.13",
+    "source-map-support": "^0.5.19",
+    "typeorm": "^0.2.36",
+    "typeorm-aurora-data-api-driver": "^2.2.0",
+    "typeorm-naming-strategies": "^2.0.0"
   },
   "devDependencies": {
     "@serverless/typescript": "^2.23.0",

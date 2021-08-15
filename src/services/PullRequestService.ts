@@ -1,11 +1,31 @@
-const axios = require('axios');
+import {Repository} from "typeorm";
+import {PullRequest} from "../entities/PullRequest";
+import {PullRequestParameters} from "repo-finder";
+import GitService from "./GitService";
+import {Service} from "./Service";
 
-export default class PullRequestService {
-    async getAll(pathParameters) {
-        const url = `https://api.github.com/repos/${pathParameters.user}/${pathParameters.repo}/pulls`;
-        const res = await axios.get(url, {
-            headers: {'Accept': 'application/vnd.github.v3+json'},
+
+export default class PullRequestService extends Service<PullRequest>{
+    constructor(repo: Repository<PullRequest>, private gitService = new GitService()){
+        super(repo);
+
+    }
+
+    async getAll(pathParameters: PullRequestParameters) {
+        const res = await this.gitService.get(`https://api.github.com/repos/${pathParameters.user}/${pathParameters.repo}/pulls`);
+        await this.delete(pathParameters);
+        const promises = res.map( (pullRequest) => {
+            return this.create({
+                id: pullRequest.id,
+                commitsUrl: pullRequest.commits_url,
+                state: pullRequest.state,
+                url: pullRequest.url,
+                ...pathParameters
+            });
         });
-        return res.data;
+        const repoRes = await Promise.all(promises);
+        console.log('repoRes', repoRes);
+
+        return repoRes;
     }
 }

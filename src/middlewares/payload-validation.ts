@@ -26,6 +26,7 @@ const commitPayloadValidation = () => {
 const errorHandler = () => {
     return {
         onError: async handler => {
+            console.error(handler.error);
             const statusCode = get(handler.error, 'response.status', 400);
             const body = get(handler.error, 'response.statusText', handler.error);
             handler.response = {
