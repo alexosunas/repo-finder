@@ -4,7 +4,7 @@
   "description": "Serverless aws-nodejs-typescript template",
   "main": "serverless.ts",
   "scripts": {
-    "test": "jest",
+    "test": "jest --setupFiles dotenv/config",
     "test:watch": "jest --watch",
     "test:covergae": "jest --coverage",
     "start": "TZ=utc serverless offline",
@@ -27,7 +27,9 @@
     "@types/aws-lambda": "^8.10.71",
     "@types/jest": "^26.0.24",
     "@types/node": "^14.14.25",
+    "aws-sdk": "^2.968.0",
     "jest": "^27.0.6",
+    "jest-mock-axios": "^4.4.0",
     "json-schema-to-ts": "^1.5.0",
     "serverless": "^2.23.0",
     "serverless-offline": "^7.0.0",

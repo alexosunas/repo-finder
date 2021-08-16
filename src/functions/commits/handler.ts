@@ -6,7 +6,7 @@ import CommitService from '../../services/CommitService';
 
 const commits: Handler = async (event) => {
     const service = new CommitService();
-    const response = await service.getOne(event.queryStringParameters);
+    const response = <Record<string, any>>await service.getAll(event.pathParameters);
     return formatJSONResponse(response);
 };
 

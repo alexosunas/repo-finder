@@ -16,8 +16,13 @@ const repoPayloadValidation = () => {
 const commitPayloadValidation = () => {
     return {
         before: handler => {
-            const url = get(handler, 'event.queryStringParameters.url');
-            if(!url) throw 'url value in query parameters is needed.';
+            const user = get(handler, 'event.pathParameters.user');
+            const repo = get(handler, 'event.pathParameters.repo');
+            const commitId = get(handler, 'event.pathParameters.commitId');
+
+            if(!user) throw 'user value in path is needed.';
+            if(!repo) throw 'repository value in path is needed.';
+            if(!commitId) throw 'Commit Id value in path is needed.';
             return Promise.resolve();
         }
     }

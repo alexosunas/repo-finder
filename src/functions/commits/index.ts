@@ -8,7 +8,7 @@ export default
             {
                 http: {
                     method: 'get',
-                    path: 'commits',
+                    path: 'commits/{user}/{repo}/{commitId}',
                     request: {
                         schema: {}
                     },
